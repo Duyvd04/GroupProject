@@ -1,6 +1,6 @@
 package com.example.chatapp.listener;
 
-import com.example.chatapp.model.ChatMessage;
+import com.example.chatapp.model.Message; // Corrected import
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -22,9 +22,10 @@ public class WebSocketEventListener {
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if (username != null) {
             log.info("User disconnected: {}", username);
-            ChatMessage chatMessage = ChatMessage.builder()
-                    .type(ChatMessage.MessageType.LEAVE)
+            Message chatMessage = Message.builder()
+                    .type(Message.MessageType.LEAVE) // Ensure the type matches your enum
                     .sender(username)
+                    .content(username + " has left the chat")
                     .build();
             messagingTemplate.convertAndSend("/topic/public", chatMessage);
         }

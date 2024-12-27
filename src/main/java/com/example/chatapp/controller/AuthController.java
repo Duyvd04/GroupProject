@@ -16,7 +16,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerPage(Model model) {
-        model.addAttribute("error", false); // Default to no error
+        model.addAttribute("error", false);
         return "register";
     }
 
@@ -33,7 +33,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(Model model, @RequestParam(required = false) String error) {
-        model.addAttribute("error", error != null); // Show error if login fails
+        model.addAttribute("error", error != null);
         return "login";
     }
 
