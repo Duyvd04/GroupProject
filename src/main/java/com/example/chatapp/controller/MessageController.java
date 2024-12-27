@@ -1,6 +1,5 @@
 package com.example.chatapp.controller;
 
-import com.example.chatapp.model.ChatMessage;
 import com.example.chatapp.model.Message;
 import com.example.chatapp.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +25,14 @@ public class MessageController {
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    public Message sendMessage(@Payload Message chatMessage) {
         Message message = Message.builder()
                 .sender(chatMessage.getSender())
                 .content(chatMessage.getContent())
                 .timestamp(LocalDateTime.now())
+                .type(chatMessage.getType())
                 .build();
         messageService.saveMessage(message);
-        return chatMessage;
+        return message;
     }
 }
