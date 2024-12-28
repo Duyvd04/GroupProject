@@ -14,6 +14,11 @@ public class AuthController {
 
     private final UserService userService;
 
+    @GetMapping("/")
+    public String redirectToLogin() {
+        return "redirect:/login"; // Redirect root URL to login
+    }
+
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("error", false);
