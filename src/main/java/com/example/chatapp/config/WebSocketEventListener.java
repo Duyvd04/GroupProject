@@ -1,4 +1,4 @@
-package com.example.chatapp.listener;
+package com.example.chatapp.config;
 
 import com.example.chatapp.model.Message; // Corrected import
 import lombok.RequiredArgsConstructor;
