@@ -99,27 +99,25 @@
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, (error) => {
-            console.error('Could not connect to WebSocket server.', error);
+            console.error('WebSocket connection failed:', error);
         });
     }
 
-    // On successful connection
     function onConnected() {
         stompClient.subscribe('/topic/public', onMessageReceived);
 
-        // Notify server about user joining
-        stompClient.send('/app/chat.send', {}, JSON.stringify({
+        const joinMessage = {
             sender: username,
             content: `${username} joined!`,
             type: 'JOIN',
-        }));
+        };
+
+        stompClient.send('/app/chat.send', {}, JSON.stringify(joinMessage));
     }
+
 
     // Send message
     function sendMessage() {
-        if (isMessageSending) return; // Prevent duplicate sends
-        isMessageSending = true;
-
         const messageContent = document.getElementById('chat-message').value.trim();
 
         if (messageContent && stompClient) {
@@ -130,20 +128,14 @@
             };
 
             stompClient.send('/app/chat.send', {}, JSON.stringify(chatMessage));
-            document.getElementById('chat-message').value = ''; // Clear input field
+            document.getElementById('chat-message').value = ''; // Clear input
         }
-
-        setTimeout(() => {
-            isMessageSending = false; // Allow sending new messages
-        }, 100); // Short delay to prevent rapid duplicate sends
     }
 
-    // Handle received message
     function onMessageReceived(payload) {
         const message = JSON.parse(payload.body);
         const chatContainer = document.getElementById('chat-container');
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message', 'mb-2');
 
         if (message.type === 'JOIN' || message.type === 'LEAVE') {
             messageElement.innerHTML = `<p class="text-muted"><em>${message.content}</em></p>`;
@@ -152,7 +144,7 @@
         }
 
         chatContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
     }
 
     // Attach send button functionality
