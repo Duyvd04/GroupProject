@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register", "/api/auth/register", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/api/auth/username").authenticated() // Secure this endpoint
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
