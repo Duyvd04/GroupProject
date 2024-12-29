@@ -133,7 +133,7 @@
 <body>
 <div class="container">
   <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi-VN-France-University.png" alt="Logo">
-  <h1>Sign in</h1>
+  <h1 th:text="#{app.login}">Sign in</h1>
   <p>to connect with your favourite people!</p>
   <form action="/login" method="POST">
     <input type="text" id="username" name="username" placeholder="Enter your account" required>
