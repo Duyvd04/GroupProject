@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,36 +22,47 @@
             flex-grow: 1;
             gap: 10px;
             height: calc(100vh - 20px); /* Ensure the container fills the viewport */
-            padding: 10px;
+            padding: 15px;
             overflow: hidden;
             align-items: stretch; /* Ensure all children stretch to the same height */
         }
 
 
         .outer-sidebar {
-            width: 60px;
-            background-color: #23272a; /* Matches background */
+            width: 72px; /* Adjust width to fit the style */
+            background-color: #23272a; /* Match the container's background color */
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px 0;
+            box-shadow: none; /* Remove shadow for a consistent look */
         }
 
         .outer-sidebar button {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 15px;
-            border-radius: 50%;
-            background-color: #5865f2;
+            width: 48px; /* Icon container size */
+            height: 48px;
+            margin: 10px 0; /* Spacing between icons */
+            border-radius: 50%; /* Initial circular shape */
+            background-color: #5865f2; /* Button background color */
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; /* Smooth transition */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .outer-sidebar button img {
+            width: 24px; /* Icon size */
+            height: 24px;
         }
 
         .outer-sidebar button:hover {
-            background-color: #4752c4;
-            border-radius: 8px; /* Change to square */
+            background-color: #4752c4; /* Slightly darker hover color */
+            border-radius: 8px; /* Animation to a square shape */
+            transition: all 0.3s ease; /* Smooth animation from circle to square */
         }
+
 
         .sidebar {
             width: 360px;
@@ -122,7 +133,7 @@
         }
 
         .sidebar .menu-divider {
-            border-top: 0.5px solid #40444b;
+            border-top: 0.4px solid #40444b;
             margin: 5px 0;
         }
 
@@ -130,7 +141,28 @@
             padding: 10px;
             flex-grow: 1; /* Let chat list fill remaining space */
             overflow-y: auto; /* Allow scrolling for direct messages */
+            background-color: #2c2f33; /* Matches sidebar background */
         }
+
+        /* Custom scrollbar styling for sidebar */
+        .sidebar .chat-list::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+        }
+
+        .sidebar .chat-list::-webkit-scrollbar-thumb {
+            background-color: #5865f2; /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Round the scrollbar edges */
+        }
+
+        .sidebar .chat-list::-webkit-scrollbar-thumb:hover {
+            background-color: #4752c4; /* Change color on hover */
+        }
+
+        .sidebar .chat-list::-webkit-scrollbar-track {
+            background-color: #484e54; /* Color of the scrollbar track */
+            border-radius: 10px;
+        }
+
 
         .sidebar .chat-section-label {
             padding: 8px;
@@ -251,48 +283,93 @@
         }
 
         .chat-messages {
-            flex-grow: 1;
-            padding: 10px;
-            overflow-y: auto; /* Correct overflow */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 2px; /* Ensure consistent 2px gap between all messages */
+            overflow-y: auto;
+            padding: 10px; /* Ensure padding around messages */
+            background-color: #36393f; /* Match the chat container color */
         }
 
-        .message-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            margin-bottom: 20px;
+        /* Custom scrollbar styling */
+        .chat-messages::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
         }
 
-        .timestamp {
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #5865f2; /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Round the scrollbar edges */
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background-color: #4752c4; /* Change color on hover */
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background-color: #484e54; /* Color of the scrollbar track */
+            border-radius: 10px;
+        }
+
+        .message-time {
             text-align: center;
-            color: #b9bbbe;
             font-size: 12px;
-            margin: 10px 0;
+            color: #b9bbbe;
+            margin: 30px 0; /* Add space above and below */
+            display: block; /* Ensure it takes full width */
+            align-self: center; /* Explicitly center within a flex container */
         }
 
         .message {
             display: flex;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .message.right {
-            justify-content: flex-end;
-            align-items: flex-end;
+            margin-bottom: 0; /* Reset margin between messages */
+            gap: 10px; /* Add 2px gap between continuous messages */
+            flex-direction: column; /* Stack content and spacing elements */
+            align-items: flex-end; /* Align messages properly for right alignment */
         }
 
         .message-content {
-            background-color: #484e54;
-            padding: 10px;
-            border-radius: 8px;
-            max-width: 300px;
-            word-wrap: break-word;
-            color: #ffffff;
-            font-size: 14px;
+            padding: 8px; /* Adjust padding inside the bubble */
+            border-radius: 12px; /* Rounded corners */
+            background-color: #5865f2; /* Message bubble background color */
+            color: white; /* Text color */
+            max-width: 300px; /* Maximum width of the message */
+            word-wrap: break-word; /* Handle long text */
+            white-space: pre-wrap; /* Preserve line breaks */
+            overflow-wrap: break-word;
         }
+
+        .message.right {
+            align-self: flex-end; /* Push messages to the right side */
+            display: flex;
+            flex-direction: row-reverse; /* Ensure proper avatar placement if needed */
+        }
+
+        .message-content.right, .message-content.left {
+            background-color: #5865f2; /* hoặc màu phù hợp */
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            max-width: 580px;
+            word-wrap: break-word;
+            overflow-wrap: break-word; /* Đảm bảo xuống dòng khi nội dung quá dài */
+            white-space: pre-wrap; /* Giữ định dạng xuống dòng nếu có */
+        }
+
+
+        .message.left {
+            align-self: flex-start; /* Default for left-aligned messages */
+            display: flex;
+            flex-direction: row;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #5865f2; /* Example color */
+            flex-shrink: 0;
+        }
+
 
         .chat-input {
             flex-shrink: 0; /* Prevent input from collapsing */
@@ -344,10 +421,18 @@
 <body>
 <div class="container">
     <div class="outer-sidebar">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/search.png" alt="Search">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/message-group.png" alt="Messages">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/settings.png" alt="Settings">
+        </button>
     </div>
     <div class="sidebar">
         <!-- Search Input -->
@@ -373,13 +458,17 @@
         <!-- Chat List -->
         <div class="chat-section-label">Direct Messages</div>
         <div class="chat-list">
-            <div class="chat-item" onclick="changeChatHeader('Friend 1')">
+            <div class="chat-item" data-name="Friend 1" onclick="changeChatHeader(this)">
                 <div class="avatar"></div>
                 <span>Friend 1</span>
             </div>
-            <div class="chat-item" onclick="changeChatHeader('Group 1')">
+            <div class="chat-item" data-name="Group 1" onclick="changeChatHeader(this)">
                 <div class="avatar"></div>
                 <span>Group 1</span>
+            </div>
+            <div class="chat-item" data-name="Family Group" onclick="changeChatHeader(this)">
+                <div class="avatar"></div>
+                <span>Family Group</span>
             </div>
         </div>
     </div>
@@ -402,7 +491,23 @@
                 </button>
             </div>
         </div>
-        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-messages" id="chatMessages">
+                <!-- Message from User 1 -->
+                <div class="message left">
+                    <div class="avatar"></div>
+                    <div class="message-content left">Hello, how are you?</div>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="message-time">13:38</div>
+
+                <!-- Message from User 2 -->
+                <div class="message right">
+                    <div class="message-content right">I'm good, thanks!</div>
+                    <div class="avatar"></div>
+                </div>
+
+        </div>
         <div class="chat-input">
             <input type="text" id="messageInput" placeholder="Type a message...">
             <button class="send-btn" id="send-message">
@@ -417,7 +522,8 @@
 <script>
     let stompClient;
     let username;
-    let isMessageSending = false; // Prevent duplicate sends
+    let lastTimestamp = null;
+    let lastSender = null;
 
     // Fetch the username from the server
     async function fetchUsername() {
@@ -438,7 +544,20 @@
         }
     }
 
+    function changeChatHeader(element) {
+        const newName = element.getAttribute('data-name'); // Get the name from the clicked chat-item
+        const profileNameElement = document.getElementById('profileName'); // Header name element
+
+        // Update the chat header's name
+        profileNameElement.textContent = newName;
+
+        // Optionally, change the profile picture or status dynamically
+        // For example:
+        const profilePicElement = document.getElementById('profilePic');
+        profilePicElement.style.backgroundColor = getRandomColor(); // Change avatar color dynamically
+    }
     // Fetch previous messages
+
     async function fetchMessages() {
         try {
             const response = await fetch('/api/messages', {
@@ -449,19 +568,10 @@
             if (response.ok) {
                 const messages = await response.json();
                 const chatContainer = document.getElementById('chatMessages');
-                chatContainer.innerHTML = ''; // Clear any existing messages
+                chatContainer.innerHTML = ''; // Clear old messages
 
                 messages.forEach((message) => {
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('message', 'mb-2');
-
-                    if (message.type === 'JOIN' || message.type === 'LEAVE') {
-                        messageElement.innerHTML = `<p class="text-muted"><em>${message.content}</em></p>`;
-                    } else {
-                        messageElement.innerHTML = `<p><strong>${message.sender}:</strong> ${message.content}</p>`;
-                    }
-
-                    chatContainer.appendChild(messageElement);
+                    addMessageToChat(message);
                 });
 
                 // Auto-scroll to the latest message
@@ -474,11 +584,56 @@
         }
     }
 
-    // Initialize message fetch on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchMessages();
-        fetchUsername(); // Ensure both username and messages are loaded
-    });
+    function addMessageToChat(message) {
+        const chatContainer = document.getElementById('chatMessages');
+
+        const currentTimestamp = new Date(message.timestamp);
+        const formattedTime = currentTimestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Add a timestamp if there's a time gap of 10 minutes or this is the first message
+        if (!lastTimestamp || currentTimestamp - lastTimestamp > 10 * 60 * 1000) {
+            const messageTime = document.createElement('div');
+            messageTime.classList.add('message-time');
+            messageTime.textContent = formattedTime;
+
+            chatContainer.appendChild(messageTime);
+        }
+
+        lastTimestamp = currentTimestamp;
+
+        // Create the message element
+        const messageElement = document.createElement('div');
+        const isCurrentUser = message.sender === username;
+
+        messageElement.classList.add('message', isCurrentUser ? 'right' : 'left');
+
+        if (!isCurrentUser) {
+            // Add avatar for left-aligned messages
+            const avatarElement = document.createElement('div');
+            avatarElement.classList.add('avatar');
+            avatarElement.style.backgroundColor = '#5865f2'; // Example color for avatar
+            messageElement.appendChild(avatarElement);
+        }
+
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content', isCurrentUser ? 'right' : 'left');
+        messageContent.textContent = message.content;
+
+        if (!isCurrentUser) {
+            // Append message content after avatar for left-aligned messages
+            messageElement.appendChild(messageContent);
+        } else {
+            // Append message content directly for right-aligned messages
+            messageElement.appendChild(messageContent);
+        }
+
+        chatContainer.appendChild(messageElement);
+
+        // Auto-scroll to the bottom
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+
 
     // Connect to WebSocket
     function connect() {
@@ -502,36 +657,29 @@
         stompClient.send('/app/chat.send', {}, JSON.stringify(joinMessage));
     }
 
+    function onMessageReceived(payload) {
+        const message = JSON.parse(payload.body);
+        addMessageToChat(message);
+    }
 
     // Send message
     function sendMessage() {
-        const messageContent = document.getElementById('messageInput').value.trim();
+        const messageInput = document.getElementById('messageInput');
+        const messageContent = messageInput.value.trim();
 
         if (messageContent && stompClient) {
             const chatMessage = {
                 sender: username,
                 content: messageContent,
                 type: 'CHAT',
+                timestamp: new Date().toISOString(),
             };
 
+            // Send the message through WebSocket
             stompClient.send('/app/chat.send', {}, JSON.stringify(chatMessage));
-            document.getElementById('chat-message').value = ''; // Clear input
+
+            messageInput.value = ''; // Clear the input field
         }
-    }
-
-    function onMessageReceived(payload) {
-        const message = JSON.parse(payload.body);
-        const chatContainer = document.getElementById('chatMessages');
-        const messageElement = document.createElement('div');
-
-        if (message.type === 'JOIN' || message.type === 'LEAVE') {
-            messageElement.innerHTML = `<p class="text-muted"><em>${message.content}</em></p>`;
-        } else {
-            messageElement.innerHTML = `<p><strong>${message.sender}:</strong> ${message.content}</p>`;
-        }
-
-        chatContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
     }
 
     // Attach send button functionality
@@ -543,6 +691,12 @@
             event.preventDefault(); // Prevent newline in input
             sendMessage();
         }
+    });
+
+    // Initialize message fetch on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchMessages();
+        fetchUsername(); // Ensure both username and messages are loaded
     });
 </script>
 </body>
