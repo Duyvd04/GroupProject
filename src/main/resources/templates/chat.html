@@ -357,10 +357,39 @@
 
 
         .message.left {
-            align-self: flex-start; /* Default for left-aligned messages */
+            align-self: flex-start; /* Align the message block to the left */
             display: flex;
-            flex-direction: row;
+            flex-direction: row; /* Align avatar and message content horizontally */
+            align-items: flex-start; /* Align avatar and content at the top */
+            gap: 10px; /* Space between avatar and message content */
         }
+
+
+        .message.left .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #5865f2; /* Example color for the avatar */
+            flex-shrink: 0;
+            visibility: visible; /* Ensure the avatar is always visible */
+        }
+
+        .message.left .avatar.hidden {
+            visibility: hidden; /* Hide the avatar for non-newest messages */
+        }
+
+        .message.left .message-content {
+            background-color: #5865f2; /* Bubble color */
+            color: white; /* Text color */
+            padding: 8px;
+            border-radius: 12px;
+            max-width: 300px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+            margin-left: 0; /* Consistent alignment */
+        }
+
 
         .avatar {
             width: 32px;
@@ -595,11 +624,13 @@
             const messageTime = document.createElement('div');
             messageTime.classList.add('message-time');
             messageTime.textContent = formattedTime;
-
             chatContainer.appendChild(messageTime);
         }
 
         lastTimestamp = currentTimestamp;
+
+        // Check if the last sender is different or if the message group is new
+        const isNewGroup = lastSender !== message.sender;
 
         // Create the message element
         const messageElement = document.createElement('div');
@@ -607,31 +638,60 @@
 
         messageElement.classList.add('message', isCurrentUser ? 'right' : 'left');
 
-        if (!isCurrentUser) {
-            // Add avatar for left-aligned messages
-            const avatarElement = document.createElement('div');
-            avatarElement.classList.add('avatar');
-            avatarElement.style.backgroundColor = '#5865f2'; // Example color for avatar
-            messageElement.appendChild(avatarElement);
+        // Create a container for the avatar and message content
+        const avatarAndMessageContainer = document.createElement('div');
+        avatarAndMessageContainer.style.display = 'flex';
+        avatarAndMessageContainer.style.alignItems = 'flex-end'; // Align avatar with the bottom of the message
+        avatarAndMessageContainer.style.marginBottom = isNewGroup ? '4px' : '0px'; // Remove extra space for continuous messages
+
+        // Add avatar for left-aligned messages
+        const avatarElement = document.createElement('div');
+        avatarElement.classList.add('avatar');
+        avatarElement.style.visibility = isNewGroup && !isCurrentUser ? 'visible' : 'hidden';
+        avatarElement.style.width = '32px';
+        avatarElement.style.height = '32px';
+        avatarElement.style.marginRight = '10px'; // Space between avatar and message content
+
+        // Create a container for the username and message content
+        const messageContentContainer = document.createElement('div');
+        messageContentContainer.style.display = 'flex';
+        messageContentContainer.style.flexDirection = 'column';
+        messageContentContainer.style.alignItems = isCurrentUser ? 'flex-end' : 'flex-start';
+
+        // Add username label for left-aligned messages if it's a new group
+        if (!isCurrentUser && isNewGroup) {
+            const usernameLabel = document.createElement('div');
+            usernameLabel.textContent = message.sender;
+            usernameLabel.style.fontSize = '12px';
+            usernameLabel.style.color = '#b9bbbe';
+            usernameLabel.style.marginBottom = '4px'; // Add spacing below username
+            messageContentContainer.appendChild(usernameLabel);
         }
 
+        // Add message content
         const messageContent = document.createElement('div');
         messageContent.classList.add('message-content', isCurrentUser ? 'right' : 'left');
         messageContent.textContent = message.content;
+        messageContentContainer.appendChild(messageContent);
 
+        // Append avatar and message content container based on alignment
         if (!isCurrentUser) {
-            // Append message content after avatar for left-aligned messages
-            messageElement.appendChild(messageContent);
-        } else {
-            // Append message content directly for right-aligned messages
-            messageElement.appendChild(messageContent);
+            avatarAndMessageContainer.appendChild(avatarElement); // Add avatar for left-aligned messages
         }
+        avatarAndMessageContainer.appendChild(messageContentContainer);
+
+        messageElement.appendChild(avatarAndMessageContainer);
 
         chatContainer.appendChild(messageElement);
+
+        // Update last sender for alignment logic
+        lastSender = message.sender;
 
         // Auto-scroll to the bottom
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
+
+
 
 
 
