@@ -1,353 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messenger-Inspired UI</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #23272a; /* Outer background */
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .container {
-            display: flex;
-            flex-grow: 1;
-            gap: 10px;
-            height: calc(100vh - 20px); /* Ensure the container fills the viewport */
-            padding: 10px;
-            overflow: hidden;
-            align-items: stretch; /* Ensure all children stretch to the same height */
-        }
-
-
-        .outer-sidebar {
-            width: 60px;
-            background-color: #23272a; /* Matches background */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .outer-sidebar button {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 15px;
-            border-radius: 50%;
-            background-color: #5865f2;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .outer-sidebar button:hover {
-            background-color: #4752c4;
-            border-radius: 8px; /* Change to square */
-        }
-
-        .sidebar {
-            width: 360px;
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Ensure it fills the entire height of the container */
-            border-radius: 8px; /* Consistent border radius */
-            background-color: #2c2f33; /* Sidebar background color */
-            border: 2px solid #40444b; /* Same border as chat container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Match chat container shadow */
-            overflow: hidden; /* Prevent overflow issues */
-        }
-
-
-        .sidebar-header {
-            height: 41px;
-            padding: 10px;
-            border-bottom: 2px solid #40444b;
-            display: flex;
-            align-items: center;
-            background-color: #2f3136;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .sidebar-header input {
-            width: 100%;
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #40444b;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .sidebar .menu-section {
-            padding: 10px;
-            flex-grow: 0;
-            overflow-y: auto; /* Allow scrolling if needed */
-        }
-
-        .sidebar .menu-item {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar .menu-item:hover {
-            background-color: #40444b;
-        }
-
-        .sidebar .menu-item .menu-item-icon {
-            width: 28px;
-            height: 28px;
-            margin-right: 14px;
-            background-color: #5865f2;
-            border-radius: 50%;
-        }
-
-        .sidebar .menu-item-text {
-            font-size: 16px;
-            color: #ffffff;
-        }
-
-        .sidebar .menu-divider {
-            border-top: 0.5px solid #40444b;
-            margin: 5px 0;
-        }
-
-        .sidebar .chat-list {
-            padding: 10px;
-            flex-grow: 1; /* Let chat list fill remaining space */
-            overflow-y: auto; /* Allow scrolling for direct messages */
-        }
-
-        .sidebar .chat-section-label {
-            padding: 8px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #b9bbbe;
-            text-transform: uppercase;
-        }
-
-        .sidebar .chat-item {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            border-radius: 8px;
-            margin-bottom: 6px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-
-        .sidebar .chat-item:hover {
-            background-color: #40444b;
-        }
-
-        .sidebar .chat-item .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #5865f2;
-            margin-right: 10px;
-        }
-
-        .sidebar .chat-item span {
-            font-size: 12px;
-            color: #ffffff;
-        }
-
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            height: 100%; /* Match the height of the parent container */
-            border-radius: 8px; /* Keep consistent rounded corners */
-            background-color: #36393f; /* Chat container color */
-            border: 2px solid #40444b;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .chat-header {
-            height: 40px;
-            background-color: #2f3136;
-            padding: 10px;
-            border-bottom: 2px solid #40444b;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .chat-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-actions button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, opacity 0.3s;
-            padding: 5px;
-            border-radius: 5px;
-            opacity: 0.8;
-        }
-
-        .chat-actions button:hover {
-            background-color: #4752c4;
-            opacity: 1;
-        }
-
-        .chat-actions button img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .chat-header .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-header .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #5865f2;
-        }
-
-        .chat-header .profile-name-status {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 40px;
-            gap: 5px;
-        }
-
-        .chat-header .profile-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .chat-header .status {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: green;
-        }
-
-        .chat-messages {
-            flex-grow: 1;
-            padding: 10px;
-            overflow-y: auto; /* Correct overflow */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .message-group {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            margin-bottom: 20px;
-        }
-
-        .timestamp {
-            text-align: center;
-            color: #b9bbbe;
-            font-size: 12px;
-            margin: 10px 0;
-        }
-
-        .message {
-            display: flex;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .message.right {
-            justify-content: flex-end;
-            align-items: flex-end;
-        }
-
-        .message-content {
-            background-color: #484e54;
-            padding: 10px;
-            border-radius: 8px;
-            max-width: 300px;
-            word-wrap: break-word;
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .chat-input {
-            flex-shrink: 0; /* Prevent input from collapsing */
-            height: 60px; /* Adjust height as needed */
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: #2f3136;
-            border-top: 2px solid #40444b;
-            border-radius: 0 0 8px 8px;
-        }
-
-        .chat-input input {
-            flex-grow: 1;
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #40444b;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .send-btn {
-            background-color: transparent;
-            border: none;
-            padding: 0;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .send-btn:hover {
-            background-color: #4752c4;
-        }
-
-        .send-icon {
-            width: 20px;
-            height: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/chat.css">
 </head>
 <body>
 <div class="container">
     <div class="outer-sidebar">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/search.png" alt="Search">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/message-group.png" alt="Messages">
+        </button>
+        <button>
+            <img src="https://img.icons8.com/material-outlined/24/ffffff/settings.png" alt="Settings">
+        </button>
     </div>
     <div class="sidebar">
         <!-- Search Input -->
@@ -373,13 +47,17 @@
         <!-- Chat List -->
         <div class="chat-section-label">Direct Messages</div>
         <div class="chat-list">
-            <div class="chat-item" onclick="changeChatHeader('Friend 1')">
+            <div class="chat-item" data-name="Friend 1" onclick="changeChatHeader(this)">
                 <div class="avatar"></div>
                 <span>Friend 1</span>
             </div>
-            <div class="chat-item" onclick="changeChatHeader('Group 1')">
+            <div class="chat-item" data-name="Group 1" onclick="changeChatHeader(this)">
                 <div class="avatar"></div>
                 <span>Group 1</span>
+            </div>
+            <div class="chat-item" data-name="Family Group" onclick="changeChatHeader(this)">
+                <div class="avatar"></div>
+                <span>Family Group</span>
             </div>
         </div>
     </div>
@@ -402,7 +80,23 @@
                 </button>
             </div>
         </div>
-        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-messages" id="chatMessages">
+                <!-- Message from User 1 -->
+                <div class="message left">
+                    <div class="avatar"></div>
+                    <div class="message-content left">Hello, how are you?</div>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="message-time">13:38</div>
+
+                <!-- Message from User 2 -->
+                <div class="message right">
+                    <div class="message-content right">I'm good, thanks!</div>
+                    <div class="avatar"></div>
+                </div>
+
+        </div>
         <div class="chat-input">
             <input type="text" id="messageInput" placeholder="Type a message...">
             <button class="send-btn" id="send-message">
@@ -414,136 +108,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
-<script>
-    let stompClient;
-    let username;
-    let isMessageSending = false; // Prevent duplicate sends
-
-    // Fetch the username from the server
-    async function fetchUsername() {
-        try {
-            const response = await fetch('/api/auth/username', {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            });
-
-            if (response.ok) {
-                username = await response.text();
-                connect(); // Connect to WebSocket
-            } else {
-                console.error('Failed to fetch username. Response:', response.status);
-            }
-        } catch (error) {
-            console.error('Error fetching username:', error);
-        }
-    }
-
-    // Fetch previous messages
-    async function fetchMessages() {
-        try {
-            const response = await fetch('/api/messages', {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            });
-
-            if (response.ok) {
-                const messages = await response.json();
-                const chatContainer = document.getElementById('chatMessages');
-                chatContainer.innerHTML = ''; // Clear any existing messages
-
-                messages.forEach((message) => {
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('message', 'mb-2');
-
-                    if (message.type === 'JOIN' || message.type === 'LEAVE') {
-                        messageElement.innerHTML = `<p class="text-muted"><em>${message.content}</em></p>`;
-                    } else {
-                        messageElement.innerHTML = `<p><strong>${message.sender}:</strong> ${message.content}</p>`;
-                    }
-
-                    chatContainer.appendChild(messageElement);
-                });
-
-                // Auto-scroll to the latest message
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            } else {
-                console.error('Failed to fetch messages. Status:', response.status);
-            }
-        } catch (error) {
-            console.error('Error fetching messages:', error);
-        }
-    }
-
-    // Initialize message fetch on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchMessages();
-        fetchUsername(); // Ensure both username and messages are loaded
-    });
-
-    // Connect to WebSocket
-    function connect() {
-        const socket = new SockJS('/websocket');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, onConnected, (error) => {
-            console.error('WebSocket connection failed:', error);
-        });
-    }
-
-    function onConnected() {
-        stompClient.subscribe('/topic/public', onMessageReceived);
-
-        const joinMessage = {
-            sender: username,
-            content: `${username} joined!`,
-            type: 'JOIN',
-        };
-
-        stompClient.send('/app/chat.send', {}, JSON.stringify(joinMessage));
-    }
-
-
-    // Send message
-    function sendMessage() {
-        const messageContent = document.getElementById('messageInput').value.trim();
-
-        if (messageContent && stompClient) {
-            const chatMessage = {
-                sender: username,
-                content: messageContent,
-                type: 'CHAT',
-            };
-
-            stompClient.send('/app/chat.send', {}, JSON.stringify(chatMessage));
-            document.getElementById('chat-message').value = ''; // Clear input
-        }
-    }
-
-    function onMessageReceived(payload) {
-        const message = JSON.parse(payload.body);
-        const chatContainer = document.getElementById('chatMessages');
-        const messageElement = document.createElement('div');
-
-        if (message.type === 'JOIN' || message.type === 'LEAVE') {
-            messageElement.innerHTML = `<p class="text-muted"><em>${message.content}</em></p>`;
-        } else {
-            messageElement.innerHTML = `<p><strong>${message.sender}:</strong> ${message.content}</p>`;
-        }
-
-        chatContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
-    }
-
-    // Attach send button functionality
-    document.getElementById('send-message').addEventListener('click', sendMessage);
-
-    // Enable sending message with Enter key
-    document.getElementById('messageInput').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent newline in input
-            sendMessage();
-        }
-    });
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
