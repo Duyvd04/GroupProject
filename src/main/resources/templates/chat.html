@@ -10,9 +10,11 @@
 <body>
 <div class="container">
     <div class="outer-sidebar">
-        <button>
+        <form th:action="@{/logout}" method="post">
+        <button type="submit">
             <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
         </button>
+        </form>
         <button>
             <img src="https://img.icons8.com/material-outlined/24/ffffff/search.png" alt="Search">
         </button>
@@ -20,7 +22,7 @@
             <img src="https://img.icons8.com/material-outlined/24/ffffff/message-group.png" alt="Messages">
         </button>
         <button>
-            <img src="https://img.icons8.com/material-outlined/24/ffffff/settings.png" alt="Settings">
+            <a href="/settings"><img src="https://img.icons8.com/material-outlined/24/ffffff/settings.png" alt="Settings"></a>
         </button>
     </div>
     <div class="sidebar">
@@ -67,7 +69,7 @@
             <div class="profile-info" data-avatar="avatarURL" data-name="Chat Room" data-status="online">
                 <div class="profile-pic" id="profilePic"></div>
                 <div class="profile-name-status">
-                    <div class="profile-name" id="profileName">Chat Room</div>
+                    <div class="profile-name" id="profileName" th:text="#{app.chatroom}">Chat Room</div>
                     <div class="status" id="status"></div>
                 </div>
             </div>

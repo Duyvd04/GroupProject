@@ -228,19 +228,30 @@ function sendMessage() {
     const messageContent = messageInput.value.trim();
 
     if (messageContent && stompClient) {
-        const chatMessage = {
+        // Create the user message object
+        const userMessage = {
             sender: username,
             content: messageContent,
             type: 'CHAT',
             timestamp: new Date().toISOString(),
         };
 
-        // Send the message through WebSocket
-        stompClient.send('/app/chat.send', {}, JSON.stringify(chatMessage));
+        // Display the user's message in the chat immediately
+        addMessageToChat(userMessage);
 
-        messageInput.value = ''; // Clear the input field
+        // Send the message through WebSocket
+        stompClient.send('/app/chat.send', {}, JSON.stringify(userMessage));
+
+        // Clear the input field
+        messageInput.value = '';
+
+        // If the message is for the chatbot, handle the chatbot logic
+        if (messageContent.startsWith('@Chatbot')) {
+            handleChatbotMessage(messageContent.replace('@Chatbot', '').trim());
+        }
     }
 }
+
 
 // Attach send button functionality
 document.getElementById('send-message').addEventListener('click', sendMessage);

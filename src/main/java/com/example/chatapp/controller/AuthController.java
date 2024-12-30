@@ -43,7 +43,8 @@ public class AuthController {
     }
 
     @GetMapping("/chat")
-    public String chatPage() {
+    public String chatPage(Model model) {
+        model.addAttribute("logoutButton", true);
         return "chat";
     }
 }

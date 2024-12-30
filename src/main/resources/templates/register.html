@@ -6,103 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #28a745, #85d798);
-            color: #fff;
             margin: 0;
-            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #c0c0c0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            padding: 0 20px;
         }
         .container {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
+            padding: 20px;
             text-align: center;
-            color: #333;
         }
-        h1 {
-            margin-bottom: 1rem;
-            font-size: 2.5rem;
-            color: #28a745;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-        label {
+        .container img {
+            width: 80px;
             display: block;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin: 0 auto 20px;
         }
-        input {
+
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .container p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .container form {
             width: 100%;
-            padding: 0.75rem;
+        }
+        .container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 16px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
+            border-radius: 4px;
+            background-color: #ffffff;
+            box-sizing: border-box;
         }
-        button {
-            background: linear-gradient(to right, #28a745, #85d798);
-            color: white;
+        .container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #a9a9a9;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1rem;
+            border-radius: 4px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.5);
+        .container button:hover {
+            background-color: #008f24;
         }
-        p {
-            margin-top: 1rem;
-            font-size: 0.9rem;
+        .container .divider {
+            margin: 20px 0;
+            font-size: 14px;
+            color: #999;
         }
-        p a {
-            color: #28a745;
+        .container .divider::before,
+        .container .divider::after {
+            content: "";
+            display: inline-block;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+            vertical-align: middle;
+            margin: 0 8px;
+        }
+        .container .options {
+            font-size: 14px;
+        }
+        .container .options a {
+            color: #4752c4;
             text-decoration: none;
         }
-        p a:hover {
+        .container .options a:hover {
             text-decoration: underline;
-        }
-        .error {
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            button {
-                width: 100%;
-            }
         }
     </style>
 </head>
 <body>
 <div class="container">
+    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi-VN-France-University.png" alt="Logo">
     <h1>Register</h1>
+    <p>to create an account and join with us!</p>
     <form action="/api/auth/register" method="POST">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Choose a username" required />
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Choose a password" required />
-        </div>
+        <input type="text" id="username" name="username" placeholder="Enter your account" required>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+<!--        <input type="text" id="question" name="question" placeholder="Your secret question in case you forget your password" required>-->
+<!--        <input type="text" id="answer" name="answer" placeholder="Enter your answer for the question above" required>-->
         <button type="submit">Register</button>
     </form>
-    <p>Already have an account? <a href="/login">Login here</a></p>
-    <p class="error" th:if="${error}">Username already exists</p>
+    <div class="divider">or</div>
+    <p class="options">Already have an account? <a href="/login">Login here</a></p>
+    <p class="error" th:if="${error}" style="color: red">Username already exists</p>
 </div>
 </body>
 </html>
