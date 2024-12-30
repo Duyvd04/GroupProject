@@ -3,3 +3,4 @@ Group Project
 - Display previous messages
 - Change application.properties for db
 - I18N: en, vi(vi is not working correctly atm)
+- Chatbot: Hugging Face model
