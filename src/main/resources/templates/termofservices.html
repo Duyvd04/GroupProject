@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+        * {
+            box-sizing: border-box;
+        }
+
+        header{
+            z-index: 99999;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container{
+            font-family: "Be Vietnam Pro";
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .logo img{
+            margin: 10px 0 10px 0;
+            padding-left: 100px;
+            height: 50px;
+            width: auto;
+            
+        }
+
+        .signin{
+            align-items: end;
+            list-style-type: none;
+            color: slategrey;
+            margin-top: 0;
+            padding: 30px;
+            font-weight: 600;
+        }
+
+        li{
+            
+            padding: 0 20px 0 20px;
+            
+        }
+
+        a{
+            text-decoration: none;
+            color: slategrey;
+        }
+
+
+        a:hover{
+            color:#00ADEF
+        }
+
+        /* body */
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styling */
+        .head {
+            background-color: seashell;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .head .container-2 h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Main content layout */
+        .bod {
+            display: flex; /* Use flexbox to align content */
+            gap: 30px; /* Space between TOC and content */
+            padding: 40px 20px;
+        }
+
+        /* Table of contents styling (left sidebar) */
+        .toc {
+            flex-shrink: 0; /* Prevent the table of contents from shrinking */
+            width: 250px; /* Set a fixed width for the table of contents */
+        }
+
+        .table-of-contents {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            position: sticky; /* Make it sticky while scrolling */
+            top: 20px; /* Offset from top */
+        }
+
+        .table-of-contents li {
+            font-size: 1rem;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .table-of-contents li a {
+            text-decoration: none;
+            color:  brown;
+            font-weight: bold;
+            display: block;
+        }
+
+        .table-of-contents li a:hover {
+            background-color: #d6e0f0;
+        }
+
+        /* Content section styling */
+        .terms-section {
+            flex-grow: 1; /* Allow content section to take up remaining space */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .terms-section div {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .terms-section h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .terms-section p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .bod {
+                flex-direction: column; /* Stack the table of contents and content vertically */
+                gap: 20px;
+            }
+
+            .toc {
+                width: 100%; /* Full width for the TOC on small screens */
+            }
+
+            .terms-section {
+                width: 100%;
+            }
+
+            .terms-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .terms-section p {
+                font-size: 0.9rem;
+            }
+        }
+
+
+
+
+        /*  CONTENT*/
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        .terms-section {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px; /* To avoid cutting off the content at the bottom */
+        }
+
+        /* Container for all content */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        /* Define a tab space */
+        ul, ol {
+            padding-left: 2em; /* Indent the list by 1 tab space (usually 1em is about one tab width) */
+        }
+        
+        /* Text-indent example for a paragraph or block of text */
+        p {
+            text-indent: 1em; /* This adds a 1-tab space indentation */
+        }
+
+
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .content {
+                padding: 10px;
+            }
+
+            .content > div {
+                margin-bottom: 15px;
+            }
+
+            .content-1, .content-2, .content-3 .content-4 {
+                padding: 15px;
+            }
+        }
+
+
+
+
+
+        /* footer */
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        /* Container for footer widgets */
+        .upper-footer {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .footer-widget-area {
+            display: flex; /* Flexbox layout */
+            justify-content: space-between; /* Space out the widgets */
+            align-items: flex-start; /* Align items to the top */
+            gap: 20px; /* Space between widgets */
+        }
+
+        /* Each widget column */
+        .footer-widget-column {
+            flex: 1; /* Allow each widget to take equal space */
+            padding: 0 10px;
+        }
+
+        /* Widget title */
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .widget-title span {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Useful Links styling */
+        .footerlist {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .footerlist li {
+            margin-bottom: 10px;
+        }
+
+        .footerlist li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .footerlist li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social media icons */
+        .redux-social-media-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .redux-social-media-list li a {
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .redux-social-media-list li a:hover {
+            color: #007bff; /* Add a hover color effect */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container-3 {
+                flex-direction: column; /* Stack widgets on small screens */
+                align-items: center;
+            }
+
+            .footer-widget-column {
+                margin-bottom: 20px; /* Add space between stacked widgets */
+                width: 100%;
+            }
+
+            .redux-social-media-list li a {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* end footer */
+    </style>
+
+
+</head>
+<body>
+    <header class="section">
+        <div  class="container">
+            <div class="logo">
+                <img src="../static/images/logotruong.webp" alt="">
+            </div>
+
+            <div>
+                <ul class="signin">
+                    <li><a href="link sign in">Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="head">
+            <div class="container-2">
+                <h1>Terms of Service</h1>
+            </div>
+        </div>
+
+        <div class="bod">
+            <div class="toc">
+                <ul class="table-of-contents">
+                    <li><a href="#section1">1. The Services We Provide</a></li>
+                    <li><a href="#section2">2. How Our Services Are Funded</a></li>
+                    <li><a href="#section3">3. Your Commitments to Facebook and Our Community</a></li>
+                    <li><a href="#section4">4. Additional Provisions</a></li>
+    
+                </ul>
+            </div>
+
+            <section class="terms-section">
+                <div class="content"> 
+                    <div id="section1" class="content-1">
+                        <h2>1. The Services We Provide</h2>
+                            <p>Our mission is to empower people to build communities and bring the world closer together through meaningful connections. To help achieve this, we offer the following products and services:</p>
+                            <br>
+                        <h4>Connect with people and communities you care about</h4>
+                            <p>We help you discover and connect with friends, groups, businesses, and organizations you care about across our platform. Using data, we suggest relevant connections, such as people you might want to chat with, groups to join, events to attend, and more. Stronger connections make for better communities, and we believe our services are most valuable when you can engage with those who matter to you.</p>
+                        <h4>Express yourself and communicate easily</h4>
+                            <p>Our app offers various ways to communicate with your friends and community. Whether you're chatting one-on-one or in a group, we make it easy for you to express yourself and stay in touch with what matters most to you.</p>
+                        <h4>Discover relevant content, products, and services</h4>
+                            <p>We provide personalized recommendations, including ads and sponsored content, to help you discover products, services, and other content that interests you. These suggestions come from businesses and organizations that use our platform to reach users like you.</p>
+                        <h4>Ensure safety, security, and integrity</h4>
+                            <p>Your safety and security are our top priorities. We use advanced systems to detect and address harmful content or behavior, ensuring that our platform remains a safe space for everyone. If we identify misuse or harmful conduct, we may take actions like removing content, restricting features, or disabling accounts to maintain the integrity of our service.</p>
+                        <h4>Research and improve our services</h4>
+                            <p>We engage in research to improve our app by analyzing user behavior and feedback. This includes testing new features, troubleshooting issues, and learning more about how our users engage with the app to make it even better.</p>
+                        <h4>Consistent and seamless experiences across platforms</h4>
+                            <p>We design our app to provide a seamless experience across all our services. Whether you're chatting on one platform or browsing content on another, we make sure your experience is consistent and easy.</p>
+    
+                        </div>
+        
+                    <div id="section2" class="content-2">
+                        <h2>2. How Our Services Are Funded</h2>
+                            <p>Our chatting app is free to use, but we show personalized ads and sponsored content to help fund our services. By using our app, you agree that we can display ads tailored to your interests. We use your activity data, like the topics you engage with and your preferences, to show you ads and content that may be more relevant to you.</p>
+                        <h4>Protecting Your Privacy</h4>
+                            <p>Your privacy is important to us. Our ad system is designed to show you relevant ads without sharing your personal information with advertisers. We don’t sell your data. Instead, advertisers can tell us the type of audience they want to reach (for example, people aged 18-35 who enjoy sports), and we target their ads to users we believe might be interested.</p>
+                        <h4>How We Share Information with Advertisers</h4>
+                            <p>We provide advertisers with general performance data to help them understand how users engage with their ads, but we don’t share personal details that could identify you (like your name or email address) unless you explicitly give us permission. For example, we might inform advertisers that their ad was seen by users aged 25-34 who are interested in fitness, but we won’t disclose any identifying information about you.</p>
+                    </div>
+        
+                    <div id="section3" class="content-3">
+                        <h2>3. Your Commitments to Facebook and Our Community</h2>
+                            <p>We provide these services to you and others to help advance our mission. In exchange, we need you to make the following commitments:</p>
+                        
+                        <h4>3.1 Who Can Use Our App</h4>
+                            <p>To ensure a safe and accountable community, we ask that you make the following commitments:</p>
+                            <ul>
+                                <li>Provide your real name and accurate information for your account.</li>
+                                <li>Create only one account for personal use.</li>
+                                <li>Do not share your password or give others access to your account without our permission.</li>
+                            </ul>
+                            <p>We want to make our app accessible to everyone, but there are certain restrictions:</p>
+                            <ul>
+                                <li>You must be at least 13 years old.</li>
+                                <li>You cannot use the app if you're a convicted sex offender.</li>
+                                <li>If we’ve previously disabled your account for violating our terms, you cannot create a new account without our permission.</li>
+                                <li>You must not be legally prohibited from using our services or products.</li>
+                            </ul>
+                        <h4>3.2 What You Can Share and Do on Our App</h4>
+                            <p>Our app is designed for self-expression and sharing, but not at the expense of others' safety or the integrity of our community. By using our services, you agree not to engage in or support harmful activities, including:</p>
+                            <ol type="1">
+                                <li>
+                                    <h4>Sharing or doing anything that:</h4>
+                                    <ul>
+                                        <li>Violates these terms or our community guidelines.</li>
+                                        <li>Is unlawful, misleading, discriminatory, or fraudulent.</li>
+                                        <li>You do not have the right to share or that infringes on someone else’s rights (like intellectual property rights).</li>
+                                    </ul>
+                                </li>
+    
+                                <li>
+                                    <h4>You may not:</h4>
+                                    <ul>
+                                        <li>Upload viruses or malicious code, send spam, or disrupt the proper functioning of the app.</li>
+                                        <li>Access or collect data using automated methods without permission.</li>
+                                        <li>Attempt to access data or accounts you do not have permission to.</li>
+                                        <li>Misuse any reporting or appeal features (e.g., making fraudulent reports).</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p>We can remove content that violates these rules and suspend or disable your account if necessary. If we remove your content, we’ll notify you and explain how to request a review, unless it's due to severe or repeated violations.</p>
+                        <h4>The Permissions You Give Us</h4>
+                            <p>To provide and improve our services, we need certain permissions from you:</p>
+                            <ol type="1">
+                                <li>
+                                    <h4>Permission to Use Your Content</h4>
+                                    You retain ownership of any content you share, such as photos or videos. However, by sharing content on our app, you grant us a non-exclusive, transferable, royalty-free license to use, distribute, modify, and display your content to provide and improve our services. This license ends when you delete the content from the app. You can delete your content at any time, and we will remove it from our systems, although it may take up to 90 days
+                                </li>
+                                <li>
+                                    <h4>Permission to Use Your Name and Profile Picture in Ads</h4>
+                                    You allow us to use your name, profile picture, and activity (e.g., liking an event or joining a group) in ads and other commercial content displayed in our app, without compensation. This is visible only to people who have permission to see your actions. You can control your ad preferences in the settings.
+                                </li>
+                                <li>
+                                    <h4>Permission to Update Software</h4>
+                                    If you download or use our app’s software, you grant us permission to automatically download and install updates to improve the app’s functionality.
+                                </li>
+                            </ol>
+                        
+                    </div>  
+        
+                    <div id="section4" class="content-4">
+                        <h2>4. Additional Provisions</h2>
+                            <h4>4.1 Updating Our Terms</h4>
+                                <p>We are constantly working to improve our services and add new features to enhance your experience. As a result, we may need to update these Terms from time to time to reflect changes in our services, ensure a safe and secure experience, and comply with legal requirements. We will only make changes if the existing provisions are no longer appropriate, incomplete, or need adjustments for safety, security, or legal compliance.</p>
+                                <p>We will notify you (e.g., by email or through the app) at least 30 days before we make any updates, giving you time to review the changes before they take effect, unless the changes are required by law. Once the updated Terms are in effect, you will be bound by them if you continue to use our app.</p>
+                                <p>If you do not agree to the updated Terms and no longer wish to use our app, you can delete your account at any time.</p>
+                            
+                            <h4>4.2 Account Suspension or Termination</h4>
+                                <p>Our goal is to make the app a welcoming and safe space for all users. If we determine that you have seriously or repeatedly violated our Terms or policies, we may suspend or permanently disable your access to the app and delete your account. We may also take action if you repeatedly infringe on others' intellectual property rights or if required by law.</p>
+                                <p>We may disable or delete your account if it remains inactive for an extended period, if we detect unauthorized use, or if your account is not confirmed after registration.</p>
+                                <p>If we suspend or disable your account, we will notify you and explain any options you have to request a review, unless doing so would expose us or others to legal risks, harm our community, interfere with the integrity of our services, or is prohibited by law.</p>
+                                <p>If your account is deleted or disabled, the Terms will terminate, but certain provisions will remain in effect.</p>
+    
+                            <h4>4.3 Limits on Liability </h4>
+                                <p>We strive to provide the best service possible, but our app is provided "as is," and we make no guarantees regarding its safety, security, or error-free performance. We are not responsible for any actions or content shared by users, including any offensive, unlawful, or inappropriate content.</p>
+                                <p>To the fullest extent allowed by law, we disclaim all warranties, express or implied, including the implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We are not liable for any lost profits, data, or other damages, even if we were warned of the possibility of such damages.</p>
+    
+                            <h4>4.4 Others</h4>   
+                                <ol type="1">
+                                    <li>These Terms represent the entire agreement between you and us concerning your use of our app and supersede any prior agreements.</li>
+                                    <li>Some features may be governed by additional terms, which will become part of our agreement with you. For example, commercial use or specific content may be subject to separate terms.</li>
+                                    <li>If any part of these Terms is unenforceable, it will be amended to be enforceable, and the remaining parts will still apply.</li>
+                                    <li>You cannot transfer your rights or obligations under these Terms to anyone else without our consent.</li>
+                                    <li>If your account becomes memorialized, you can designate a legacy contact to manage it.</li>
+                                    <li>These Terms do not grant third-party rights.</li>
+                                    <li>We may change your account username if it is claimed by someone else or if it does not reflect your everyday name.</li>
+                                    <li>We value your feedback and suggestions, and may use them without compensation or confidentiality obligations.</li>
+                                    <li>We reserve all rights not explicitly granted to you.</li>
+                                </ol>
+                    </div>
+                </div>
+            </section>
+                
+        </div>
+    </main>
+
+
+
+    <footer>
+        <div class="upper-footer" >
+            <div class="container-3">
+                <div class="footer-widget-area">
+                    <div class="first-widget-area footer-widget-column col-xs-12 col-sm-12 col-md-4 col-lg-4 text-left">
+                        <div id="custom_html-2" class="widget_text footer_widget widget widget_custom_html"><h5 class="widget-title"><span>Useful Links</span></h5><div class="textwidget custom-html-widget">
+                                <ul>	
+                                    <div class="footerlist">
+                                    <li><a href="login link">Login</a> </li>
+                                    <li><a href="sign up link">Signup</a> </li> 
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+        
+          
+                    <div class="second-widget-area footer-widget-column col-xs-12 col-sm-12 col-md-4 col-lg-4 text-left">
+                        <div id="custom_html-3" class="widget_text footer_widget widget widget_custom_html"><h5 class="widget-title"><span>Contact</span></h5>
+                            <div class="textwidget custom-html-widget">
+                                get.chat sp. z o.o.<br>
+                                Zarajec Potocki 31<br>
+                                23-313 Potok Wielki<br>
+                                Poland
+                            </div>
+                        </div>        
+                    </div>
+                
+                    <div class="third-widget-area footer-widget-column col-xs-12 col-sm-12 col-md-4 col-lg-4 text-left">
+                            <div id="redux-social-icons-display-2" class="footer_widget widget redux-social-icons-display"><h5 class="widget-title"><span>Banner</span></h5>			
+                                <ul class="redux-social-media-list clearfix">
+                                            <li>
+                                                <a target="_blank" href="https://github.com/get-chat/web-app/">
+                                                    <i class="fab fa-github"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.facebook.com/getchat-101114652520093">
+                                                    <i class="fab fa-facebook-square"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.instagram.com/get.chat/">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.linkedin.com/company/80697048">
+                                                    <i class="fab fa-linkedin"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://www.youtube.com/@getchat">
+                                                    <i class="fab fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://play.google.com/store/apps/details?id=chat.get.inbox">
+                                                    <i class="fab fa-google-play"></i>
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/get-chat-shared-team-inbox/id1630742529">
+                                                    <i class="fab fa-apple"></i>
+                                                </a>
+                                            </li>
+                                </ul>
+                            </div>
+                    </div>        
+                </div>     
+            </div> 
+        </div>
+            
+    </footer>
+
+
+</body>
+</html>
