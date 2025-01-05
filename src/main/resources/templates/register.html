@@ -1,111 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chat App | Register</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMSUjlbKUch7O8z5JkoxU+oIW3tcZQQeKWoEqcA" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #c0c0c0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 0 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            text-align: center;
-        }
-        .container img {
-            width: 80px;
-            display: block;
-            margin: 0 auto 20px;
-        }
-
-        .container h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        .container p {
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-        .container form {
-            width: 100%;
-        }
-        .container input {
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #ffffff;
-            box-sizing: border-box;
-        }
-        .container button {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            color: #ffffff;
-            background-color: #a9a9a9;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .container button:hover {
-            background-color: #008f24;
-        }
-        .container .divider {
-            margin: 20px 0;
-            font-size: 14px;
-            color: #999;
-        }
-        .container .divider::before,
-        .container .divider::after {
-            content: "";
-            display: inline-block;
-            width: 30%;
-            height: 1px;
-            background-color: #ddd;
-            vertical-align: middle;
-            margin: 0 8px;
-        }
-        .container .options {
-            font-size: 14px;
-        }
-        .container .options a {
-            color: #4752c4;
-            text-decoration: none;
-        }
-        .container .options a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="container">
-    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi-VN-France-University.png" alt="Logo">
-    <h1>Register</h1>
-    <p>to create an account and join with us!</p>
-    <form action="/api/auth/register" method="POST">
-        <input type="text" id="username" name="username" placeholder="Enter your account" required>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-<!--        <input type="text" id="question" name="question" placeholder="Your secret question in case you forget your password" required>-->
-<!--        <input type="text" id="answer" name="answer" placeholder="Enter your answer for the question above" required>-->
-        <button type="submit">Register</button>
-    </form>
-    <div class="divider">or</div>
-    <p class="options">Already have an account? <a href="/login">Login here</a></p>
-    <p class="error" th:if="${error}" style="color: red">Username already exists</p>
-</div>
+<body class="bg-[#121212] text-gray-300 relative">
+  <!-- Alert -->
+  <div id="successAlert" class="hidden fixed top-4 right-4 z-50 w-80 sm:w-96 text-sm sm:text-base">
+    <div class="flex items-center justify-between w-full h-16 rounded-lg bg-[#232531] px-4 shadow-lg">
+      <div class="flex items-center gap-4">
+        <div class="text-[#2b9875] bg-white/5 backdrop-blur-xl p-2 rounded-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m4.5 12.75 6 6 9-13.5"
+            ></path>
+          </svg>
+        </div>
+        <div>
+          <p class="text-white font-bold">Sign up successful!</p>
+          <p class="text-gray-400">Redirecting to sign-in page...</p>
+        </div>
+      </div>
+      <button
+        id="closeAlert"
+        class="text-gray-600 hover:bg-white/5 p-1 rounded-md transition-colors ease-linear"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Signup form -->
+  <div class="flex flex-col items-center justify-center h-screen">
+    <div class="w-full max-w-md bg-[#1E1E1E] rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-bold text-gray-100 mb-4">Sign Up</h2>
+      <form id="signupForm" class="flex flex-col">
+        <input id="firstName" placeholder="First Name" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="text" required>
+        <input id="lastName" placeholder="Last Name" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="text" required>
+        <input id="email" placeholder="Email" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="email" required>
+        <p id="emailError" class="text-red-400 text-sm hidden mb-4">Email must be in a valid format (e.g., user@example.com).</p>
+        <input id="password" placeholder="Password" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="password" required>
+        <p class="text-sm text-gray-400 mb-4">Password should be at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+        <input id="confirmPassword" placeholder="Confirm Password" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="password" required>
+        <label class="text-sm mb-2 text-gray-400 cursor-pointer" for="gender">Gender</label>
+        <select id="gender" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <label class="text-sm mb-2 text-gray-400 cursor-pointer" for="age">Date of Birth</label>
+        <input id="age" class="bg-[#2A2A2A] text-gray-100 border-0 rounded-md p-2 mb-4 focus:bg-[#333333] focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="date" required>
+        <p id="errorMessage" class="text-red-400 text-sm hidden mt-4"></p>
+        <button class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:from-blue-600 hover:to-indigo-600 transition ease-in-out duration-150" type="submit">Sign Up</button>
+      </form>
+      <div class="mt-4 text-center">
+        <p class="text-gray-400 text-sm">
+          Already have an account? 
+          <a href="index.html" class="text-blue-400 font-medium hover:underline">
+            Sign in →
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const errorMessage = document.getElementById('errorMessage');
+    const successAlert = document.getElementById('successAlert');
+    const closeAlert = document.getElementById('closeAlert');
+
+    // Validate the form on submit
+    form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent default form submission
+    let errors = [];
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email.value)) {
+      errors.push('Email must be in a valid format (e.g., user@example.com).');
+    }
+
+    // Validate password strength
+    const isValidPassword =
+      password.value.length >= 15 ||
+      (password.value.length >= 8 && /[a-z]/.test(password.value) && /\d/.test(password.value));
+    if (!isValidPassword) {
+      errors.push('Password must be at least 15 characters OR at least 8 characters including a number and a lowercase letter.');
+    }
+
+    // Validate password match
+    if (password.value !== confirmPassword.value) {
+      errors.push('Passwords do not match.');
+    }
+
+    // Display errors (if any)
+    if (errors.length > 0) {
+      errorMessage.innerHTML = errors.join('<br>');
+      errorMessage.classList.remove('hidden');
+      successAlert.classList.add('hidden'); // Hide success alert if there are errors
+    } else {
+    // If no errors, hide the error message and display the success alert
+      errorMessage.classList.add('hidden');
+      successAlert.classList.remove('hidden');
+
+    // Redirect after 3 seconds
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1500);
+  }
+});
+
+    // Close the alert button
+    closeAlert.addEventListener('click', () => {
+    successAlert.classList.add('hidden');
+  });
+
+  </script>
 </body>
 </html>
