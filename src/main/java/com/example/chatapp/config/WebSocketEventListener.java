@@ -23,7 +23,7 @@ public class WebSocketEventListener {
         if (username != null) {
             log.info("User disconnected: {}", username);
             Message chatMessage = Message.builder()
-                    .type(Message.MessageType.LEAVE) // Ensure the type matches your enum
+                    .type(Message.MessageType.LEAVE)
                     .sender(username)
                     .content(username + " has left the chat")
                     .build();

@@ -17,9 +17,9 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sender;  // Store the username of the sender
-    private String receiver; // Store the username of the receiver
-    @Column(columnDefinition = "TEXT") // Use TEXT to support long messages
+    private String sender;
+    private String receiver;
+    @Column(columnDefinition = "TEXT")
     private String content;
     private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)

@@ -11,6 +11,6 @@ public class UserController {
     @GetMapping("/api/auth/username")
     public String getLoggedInUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName(); // Returns the username of the logged-in user
+        return authentication.getName();
     }
 }

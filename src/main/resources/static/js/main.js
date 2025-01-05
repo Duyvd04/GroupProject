@@ -22,6 +22,7 @@ async function fetchUsername() {
     }
 }
 
+0
 function changeChatHeader(element) {
     const newName = element.getAttribute('data-name'); // Get the name from the clicked chat-item
     const profileNameElement = document.getElementById('profileName'); // Header name element
@@ -222,13 +223,11 @@ function onMessageReceived(payload) {
     addMessageToChat(message);
 }
 
-// Send message
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
     const messageContent = messageInput.value.trim();
 
     if (messageContent && stompClient) {
-        // Create the user message object
         const userMessage = {
             sender: username,
             content: messageContent,
@@ -236,18 +235,15 @@ function sendMessage() {
             timestamp: new Date().toISOString(),
         };
 
-        // Display the user's message in the chat immediately
-        addMessageToChat(userMessage);
-
         // Send the message through WebSocket
         stompClient.send('/app/chat.send', {}, JSON.stringify(userMessage));
 
         // Clear the input field
         messageInput.value = '';
 
-        // If the message is for the chatbot, handle the chatbot logic
+        // If the message is for the chatbot, display it immediately
         if (messageContent.startsWith('@Chatbot')) {
-            handleChatbotMessage(messageContent.replace('@Chatbot', '').trim());
+            addMessageToChat(userMessage); // Show the user's message in the chat
         }
     }
 }
@@ -263,6 +259,8 @@ document.getElementById('messageInput').addEventListener('keydown', function (ev
         sendMessage();
     }
 });
+
+
 
 // Initialize message fetch on page load
 document.addEventListener('DOMContentLoaded', () => {

@@ -37,21 +37,19 @@ public class MessageController {
                 .build();
         messageService.saveMessage(userMessage);
 
-        // Check if the message is directed to the chatbot
         if (chatMessage.getContent().startsWith("@Chatbot")) {
-            String query = chatMessage.getContent().substring(9).trim(); // Extract the user's query
-            String chatbotResponse = chatbotService.getResponse(query); // Get the chatbot's response
+            String query = chatMessage.getContent().substring(9).trim();
+            String chatbotResponse = chatbotService.getResponse(query);
 
-            // Create a chatbot response message
             Message botMessage = Message.builder()
                     .sender("Chatbot")
                     .content(chatbotResponse)
                     .timestamp(LocalDateTime.now())
                     .type(Message.MessageType.CHAT)
                     .build();
-            messageService.saveMessage(botMessage); // Save the chatbot's message
+            messageService.saveMessage(botMessage);
 
-            return botMessage; // Return the chatbot's response to the chatroom
+            return botMessage;
         }
 
         // Return the user's message for regular chat

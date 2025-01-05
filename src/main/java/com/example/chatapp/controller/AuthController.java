@@ -16,7 +16,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String redirectToLogin() {
-        return "redirect:/login"; // Redirect root URL to login
+        return "redirect:/login";
     }
 
     @GetMapping("/register")
