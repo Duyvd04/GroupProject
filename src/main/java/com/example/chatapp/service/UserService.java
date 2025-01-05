@@ -26,7 +26,12 @@ public class UserService implements UserDetailsService {
                 .build();
         return userRepository.save(user);
     }
+    public boolean validateUser(String username, String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
 
+        return passwordEncoder.matches(password, user.getPassword());
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
