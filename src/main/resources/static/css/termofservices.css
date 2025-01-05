@@ -21,6 +21,12 @@ body{
     
 }
 
+.container ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
 .logo img{
     margin: 10px 0 10px 0;
     padding-left: 100px;
