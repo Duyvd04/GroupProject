@@ -11,9 +11,9 @@
 <div class="container">
     <div class="outer-sidebar">
         <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
-        </button>
+            <button type="submit">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/home.png" alt="Home">
+            </button>
         </form>
         <button>
             <img src="https://img.icons8.com/material-outlined/24/ffffff/search.png" alt="Search">
@@ -83,20 +83,20 @@
             </div>
         </div>
         <div class="chat-messages" id="chatMessages">
-                <!-- Message from User 1 -->
-                <div class="message left">
-                    <div class="avatar"></div>
-                    <div class="message-content left">Hello, how are you?</div>
-                </div>
+            <!-- Message from User 1 -->
+            <div class="message left">
+                <div class="avatar"></div>
+                <div class="message-content left">Hello, how are you?</div>
+            </div>
 
-                <!-- Timestamp -->
-                <div class="message-time">13:38</div>
+            <!-- Timestamp -->
+            <div class="message-time">13:38</div>
 
-                <!-- Message from User 2 -->
-                <div class="message right">
-                    <div class="message-content right">I'm good, thanks!</div>
-                    <div class="avatar"></div>
-                </div>
+            <!-- Message from User 2 -->
+            <div class="message right">
+                <div class="message-content right">I'm good, thanks!</div>
+                <div class="avatar"></div>
+            </div>
 
         </div>
         <div class="chat-input">
@@ -111,5 +111,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
 <script src="/js/main.js"></script>
+<script>
+    document.querySelector('.outer-sidebar button:nth-child(3)').addEventListener('click', function () {
+        this.classList.toggle('active');
+    });
+
+</script>
 </body>
 </html>

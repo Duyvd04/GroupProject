@@ -437,3 +437,14 @@ body {
     width: 20px;
     height: 20px;
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .chat-container {
+        display: flex;
+    }
+    
+}
