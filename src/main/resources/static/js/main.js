@@ -86,7 +86,7 @@ function addMessageToChat(message) {
         joinMessage.style.textAlign = 'center';
         joinMessage.style.color = '#b9bbbe';
         joinMessage.style.margin = '10px 0';
-        chatContainer.appendChild(joinMessage);
+        // chatContainer.appendChild(joinMessage);
         return;
     }
 
@@ -241,13 +241,12 @@ function sendMessage() {
         // Clear the input field
         messageInput.value = '';
 
-        // If the message is for the chatbot, display it immediately
-        if (messageContent.startsWith('@Chatbot')) {
+        // If the message is for a chatbot, display it immediately
+        if (messageContent.startsWith('@Chatbot1') || messageContent.startsWith('@Chatbot2')) {
             addMessageToChat(userMessage); // Show the user's message in the chat
         }
     }
 }
-
 
 // Attach send button functionality
 document.getElementById('send-message').addEventListener('click', sendMessage);

@@ -28,7 +28,7 @@ public class MessageController {
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
     public Message sendMessage(@Payload Message chatMessage) {
-        // Save the user's message
+        // Lưu tin nhắn của người dùng
         Message userMessage = Message.builder()
                 .sender(chatMessage.getSender())
                 .content(chatMessage.getContent())
@@ -37,22 +37,30 @@ public class MessageController {
                 .build();
         messageService.saveMessage(userMessage);
 
-        if (chatMessage.getContent().startsWith("@Chatbot")) {
-            String query = chatMessage.getContent().substring(9).trim();
-            String chatbotResponse = chatbotService.getResponse(query);
+        String query;
+        String botType = null;
 
-            Message botMessage = Message.builder()
-                    .sender("Chatbot")
-                    .content(chatbotResponse)
-                    .timestamp(LocalDateTime.now())
-                    .type(Message.MessageType.CHAT)
-                    .build();
-            messageService.saveMessage(botMessage);
-
-            return botMessage;
+        if (chatMessage.getContent().startsWith("@Chatbot1")) {
+            query = chatMessage.getContent().substring(9).trim();
+            botType = "blenderbot";
+        } else if (chatMessage.getContent().startsWith("@Chatbot2")) {
+            query = chatMessage.getContent().substring(9).trim();
+            botType = "qa-bot";
+        } else {
+            return userMessage; // Nếu không gọi bot, trả về tin nhắn bình thường
         }
 
-        // Return the user's message for regular chat
-        return userMessage;
+        String chatbotResponse = chatbotService.getResponse(query, botType);
+
+        Message botMessage = Message.builder()
+                .sender(botType.equals("blenderbot") ? "Chatbot1" : "Chatbot2")
+                .content(chatbotResponse)
+                .timestamp(LocalDateTime.now())
+                .type(Message.MessageType.CHAT)
+                .build();
+
+        messageService.saveMessage(botMessage);
+
+        return botMessage;
     }
 }
