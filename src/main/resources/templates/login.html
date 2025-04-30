@@ -1,166 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Chat App | Login</title>
-  <link rel="icon" href="https://usth.edu.vn/wp-content/uploads/2021/11/logo.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMSUjlbKUch7O8z5JkoxU+oIW3tcZQQeKWoEqcA" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
   <style>
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container img {
-      display: block;
-      margin: -10px auto 5px;
-      width: 100px;
-    }
-    .container h1 {
-      font-size: 30px;
-      text-align: center;
-      margin-right: 20px;
-      margin-bottom: 10px;
-      font-weight: 500;
-      color: gray;
-    }
-    .container p {
-      font-size: 15px;
-      text-align: center;
-      margin-bottom: 40px;
-      margin-right: 10px;
-      color: black;
-    }
-    .container input {
-      width: 100%;
-      padding: 12px;
-      font-size: 14px;
-      border: 1px solid #DCDCDC;
-      border-radius: 4px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-      background-color: #eee;
-    }
-    .container button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      color: #ffffff;
-      background-color: #a9a9a9;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .container button:hover {
-      background-color: #008f24;
-    }
-    .container .options {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 14px;
-    }
-    .container .options a {
-      color: #4752c4;
-      text-decoration: none;
-    }
-    .container .options a:hover {
-      text-decoration: underline;
-    }
-    .container .divider {
-      text-align: center;
-      margin: 24px 0;
-      font-size: 14px;
-      color: #999999;
-    }
-    .container .divider::before,
-    .container .divider::after {
-      content: "";
-      display: inline-block;
-      width: 40%;
-      height: 1px;
-      background-color: #e0e0e0;
-      vertical-align: middle;
-      margin: 0 8px;
-    }
-    .footer1 {
-      color: gray;
-      text-align: left;
-      margin-left: 20px;
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-size: 12px;
-    }
-    .footer2 {
-      text-align: right;
-      margin-right: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .footer3 {
-      text-align: right;
-      margin-right: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 80px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .footer4 {
-      text-align: right;
-      margin-right: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 177px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .footer2 a, .footer3 a, .footer4 a {
-      text-decoration: none;
-      color: gray;
-    }
-    .footer2 a:hover, .footer3 a:hover, .footer4 a:hover {
-      color: #00a82d;
+      background-color: #1C1C1C;
     }
   </style>
+  <title>Chat App Login</title>
 </head>
 <body>
-<div class="container">
-  <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi-VN-France-University.png" alt="Logo">
-  <h1 th:text="#{app.login}">Sign in</h1>
-  <p>to connect with your favourite people!</p>
-  <form action="/login" method="POST">
-    <input type="text" id="username" name="username" placeholder="Enter your account" required>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-    <button type="submit">Continue</button>
-  </form>
-  <div class="divider">or</div>
-  <div class="options">
-<!--    <a href="repass.html">Forgot Password?</a> -->
-<!--    middot;& -->
-    <a href="/register">Register here!</a>
-  </div>
-  <p class="error" th:if="${error}" style="color: red;">Invalid username or password! Try again.</p>
+<div class="buttons">
+  <button class="raise" onclick="window.location.href='/register'">Privacy</button>
+  <button class="raise">Terms of Service</button>
+  <button class="raise">About Us</button>
+  <button class="raise" onclick="window.location.href='/register'">Register</button>
 </div>
-<footer class="footer1">
+
+<form autocomplete="off" class="form" action="/login" method="POST">
+  <div class="control">
+    <h1 th:text="#{app.login}">Sign In</h1>
+  </div>
+  <div class="control block-cube block-input">
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <div class="bg-top">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg-right">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg">
+      <div class="bg-inner"></div>
+    </div>
+  </div>
+  <div class="control block-cube block-input">
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <div class="bg-top">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg-right">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg">
+      <div class="bg-inner"></div>
+    </div>
+  </div>
+  <button class="btn block-cube block-cube-hover" type="submit">
+    <div class="bg-top">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg-right">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="bg">
+      <div class="bg-inner"></div>
+    </div>
+    <div class="text">
+      Log In
+    </div>
+  </button>
+</form>
+<p class="error" th:if="${error}" style="color: red;">Invalid username or password! Try again.</p>
+<footer class="footer">
   <a>&copy; 2024 USTH Group Project</a>
-</footer>
-<footer class="footer2">
-  <a href="aboutus.html">About us</a>
-</footer>
-<footer class="footer3">
-  <a href="/term">Terms of Service</a>
-</footer>
-<footer class="footer4">
-  <a href="/privacy">Privacy</a>
 </footer>
 </body>
 </html>
